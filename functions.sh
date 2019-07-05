@@ -116,7 +116,7 @@ function do_dump() {
   # if we asked to do by schema, then we need to get a list of all of the databases, take each, and then tar and zip them
   if [ -n "$DB_DUMP_BY_SCHEMA" -a "$DB_DUMP_BY_SCHEMA" = "true" ]; then
     if [[ -z "$DB_NAMES" ]]; then
-      DB_NAMES=$(mysql -h $DB_SERVER -P $DB_PORT $DBUSER $DBPASS -N -e 'show databases')
+      DB_NAMES=$(mysql -h $DB_SERVER -P $DB_PORT $DBUSER $DBPASS -N -e 'show databases where `Database` not like "information_schema" AND `Database` not like "performance_schema"')
       [ $? -ne 0 ] && return 1
     fi
     for onedb in $DB_NAMES; do
