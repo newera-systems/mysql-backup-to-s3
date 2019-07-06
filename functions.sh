@@ -47,7 +47,7 @@ function do_dump() {
 
     for onedb in $DB_NAMES; do
 
-      ONEDB_SQL=${now}_$workdir/${onedb}.sql
+      ONEDB_SQL=$workdir/${now}_${onedb}.sql
       ONEDB_ZIP=${ONEDB_SQL}.tar.gz
 
       mysqldump -h $DB_SERVER -P $DB_PORT $DBUSER $DBPASS --databases ${onedb} $MYSQLDUMP_OPTS > $ONEDB_SQL
