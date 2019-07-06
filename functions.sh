@@ -33,7 +33,7 @@ function file_env() {
 #
 function do_dump() {
   # what is the name of our source and target?
-  now=$(date -u +"%Y%m%d%H%M%S")
+  now=$(date -u +"%Y%m%d_%H%M%S")
 
   # do the dump
   workdir=/tmp/backup.$$
@@ -47,7 +47,7 @@ function do_dump() {
 
     for onedb in $DB_NAMES; do
 
-      ONEDB_SQL=$workdir/${onedb}_${now}.sql
+      ONEDB_SQL=${now}_$workdir/${onedb}.sql
       ONEDB_ZIP=${ONEDB_SQL}.tar.gz
 
       mysqldump -h $DB_SERVER -P $DB_PORT $DBUSER $DBPASS --databases ${onedb} $MYSQLDUMP_OPTS > $ONEDB_SQL
