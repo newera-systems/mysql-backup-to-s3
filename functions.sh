@@ -59,6 +59,7 @@ function do_dump() {
       [ $? -ne 0 ] && return 1
 
       rm $ONEDB_ZIP
+      rm $ONEDB_SQL
     done
 
 
