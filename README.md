@@ -20,7 +20,7 @@ To run a backup, launch `mysql-backup` image as a container with the correct par
 For example:
 
 ````bash
-docker run -d --restart=always  -e DB_DUMP_TARGET=s3://my-bucket/  -e AWS_ACCESS_KEY_ID=my-aws-key -e AWS_SECRET_ACCESS_KEY=my-aws-secret  -e DB_SERVER=my-db-container -v /local/file/path:/db databack/mysql-backup
+docker run -d --restart=always  -e DB_DUMP_TARGET=s3://my-bucket/  -e AWS_ACCESS_KEY_ID=my-aws-key -e AWS_SECRET_ACCESS_KEY=my-aws-secret  -e DB_SERVER=my-db-container databack/mysql-backup
 ````
 
 The above will run a dump every 60 minutes, beginning at the next 2330 local time, from the database accessible in the container `my-db-container`.

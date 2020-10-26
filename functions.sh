@@ -58,6 +58,8 @@ function do_dump() {
       s3cmd ${AWS_ENDPOINT_OPT}  --host=$AWS_ENDPOINT_URL --access_key=${AWS_ACCESS_KEY_ID}   --secret_key=${AWS_SECRET_ACCESS_KEY}  put $ONEDB_ZIP  "${DB_DUMP_TARGET}"
       [ $? -ne 0 ] && return 1
 
+      rm $ONEDB_ZIP
+      rm $ONEDB_SQL
     done
 
 
