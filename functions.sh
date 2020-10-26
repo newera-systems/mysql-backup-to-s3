@@ -53,7 +53,7 @@ function do_dump() {
       mysqldump -h $DB_SERVER -P $DB_PORT $DBUSER $DBPASS --databases ${onedb} $MYSQLDUMP_OPTS > $ONEDB_SQL
       [ $? -ne 0 ] && return 1
 
-      tar -C $workdir -cvf - $ONEDB_SQL | gzip > $ONEDB_ZIP
+      tar -C $workdir -cf - $ONEDB_SQL | gzip > $ONEDB_ZIP
 
       s3cmd ${AWS_ENDPOINT_OPT}  --host=$AWS_ENDPOINT_URL --access_key=${AWS_ACCESS_KEY_ID}   --secret_key=${AWS_SECRET_ACCESS_KEY}  put $ONEDB_ZIP  "${DB_DUMP_TARGET}"
       [ $? -ne 0 ] && return 1
